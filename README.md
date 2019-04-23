@@ -1,1 +1,0 @@
-# Szamitogepi_grafika_beadando
