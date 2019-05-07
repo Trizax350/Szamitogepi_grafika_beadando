@@ -3,16 +3,9 @@
 #include "init.h"
 #include "draw.h"
 #include "model.h"
-#include "move.h"
-
+#include "skull.h"
 #define VIEWPORT_RATIO (4.0 / 3.0)
 #define VIEWPORT_ASPECT 50.0
-
-int isHelpOn = 0;
-int isSourcesOn = 0;
-
-int WINDOW_WIDTH;
-int WINDOW_HEIGHT;
 
 void display(void){
 	double elapsed_time = calc_elapsed_time();
@@ -22,6 +15,12 @@ void display(void){
 
 	update_camera_position(&camera, elapsed_time);
 	draw_content(&world);
+	draw_bed_model(&world);
+	draw_sink_model(&world);
+	draw_skull_model(&world);
+	draw_crib_model(&world);
+	draw_toilet_model(&world);
+	draw_hanginglight_model(&world);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -29,7 +28,7 @@ void display(void){
 
 	set_view_point(&camera);
 
-	if(isHelpOn){
+	if(action.isHelpOn == TRUE){
 		GLfloat torchForHelp[] = {0.8, 0.8, 0.8, 0.8};
 		glLightfv(GL_LIGHT1, GL_AMBIENT, torchForHelp);
 
@@ -39,7 +38,7 @@ void display(void){
 		draw_help_and_sources(world.helpTexture);
 
 		glLightfv(GL_LIGHT1, GL_AMBIENT, light_ambient);
-	} else if(isSourcesOn){
+	} else if(action.isSourcesOn == TRUE){
 		GLfloat torchForSources[] = {0.8, 0.8, 0.8, 0.8};
 		glLightfv(GL_LIGHT1, GL_AMBIENT, torchForSources);
 
@@ -172,25 +171,25 @@ void keyboardUp(unsigned char key, int x, int y){
 void specialFunc(int key, int x, int y){
 	switch(key){
 		case GLUT_KEY_F1:
-			if(isHelpOn == 1){
-				isHelpOn = 0;
+			if(action.isHelpOn == TRUE){
+				action.isHelpOn = FALSE;
 			} else {
-				isHelpOn = 1;
+				action.isHelpOn = TRUE;
 			}
 			
-			if(isSourcesOn == 1){
-				isSourcesOn = 0;
+			if(action.isSourcesOn == TRUE){
+				action.isSourcesOn = FALSE;
 			}
 		break;
 		case GLUT_KEY_F2:
-			if(isSourcesOn == 1){
-				isSourcesOn = 0;
+			if(action.isSourcesOn == TRUE){
+				action.isSourcesOn = FALSE;
 			} else {
-				isSourcesOn = 1;
+				action.isSourcesOn = TRUE;
 			}
 			
-			if(isHelpOn == 1){
-				isHelpOn = 0;
+			if(action.isHelpOn == TRUE){
+				action.isHelpOn = FALSE;
 			}
 		break;
 	}

@@ -15,10 +15,18 @@ void draw_content(World* world){
 	glEnable(GL_TEXTURE_2D);
 
     glPushMatrix();
-		draw_walls(roomToDraw);
+		draw_left(roomToDraw);
+		draw_right(roomToDraw);
+		draw_back(roomToDraw);
+		draw_front(roomToDraw);
+		draw_top(roomToDraw);
 		draw_ground(roomToDraw);
 	glPopMatrix();
 
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, material_ambient_default);
+}
+
+void draw_bed_model(World* world){
 	glPushMatrix();
 		glTranslatef(world->bed.position.x, world->bed.position.y, world->bed.position.z);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, world->bed.material_ambient);
@@ -26,7 +34,9 @@ void draw_content(World* world){
 		glScalef(10.0f, 10.0f, 10.0f);
 		draw_model(&world->bed.model);
     glPopMatrix();
-	
+}
+
+void draw_skull_model(World* world){
 	glPushMatrix();
 		glTranslatef(world->skull.position.x, world->skull.position.y, world->skull.position.z);
 		glRotatef(250.0, 1.0, 0.0, 0.0);
@@ -35,7 +45,9 @@ void draw_content(World* world){
 		glScalef(10.0f, 10.0f, 10.0f);
 		draw_model(&world->skull.model);
     glPopMatrix();
-	
+}
+
+void draw_sink_model(World* world){
 	glPushMatrix();
 		glTranslatef(world->sink.position.x, world->sink.position.y, world->sink.position.z);
 		glRotatef(270.0, 0.0, 1.0, 0.0);
@@ -44,7 +56,9 @@ void draw_content(World* world){
 		glScalef(10.0f, 10.0f, 10.0f);
 		draw_model(&world->sink.model);
     glPopMatrix();
-	
+}
+
+void draw_toilet_model(World* world){
 	glPushMatrix();
 		glTranslatef(world->toilet.position.x, world->toilet.position.y, world->toilet.position.z);
 		glMaterialfv(GL_FRONT, GL_AMBIENT, world->toilet.material_ambient);
@@ -52,7 +66,9 @@ void draw_content(World* world){
 		glScalef(10.0f, 10.0f, 10.0f);
 		draw_model(&world->toilet.model);
     glPopMatrix();
-	
+}
+
+void draw_crib_model(World* world){
 	glPushMatrix();
 		glTranslatef(world->crib.position.x, world->crib.position.y, world->crib.position.z);
 		glRotatef(140.0, 0.0, 1.0, 0.0);
@@ -61,7 +77,9 @@ void draw_content(World* world){
 		glScalef(10.0f, 10.0f, 10.0f);
 		draw_model(&world->crib.model);
     glPopMatrix();
-	
+}
+
+void draw_hanginglight_model(World* world){
 	glPushMatrix();
 		glTranslatef(world->hanginglight1.position.x, world->hanginglight1.position.y, world->hanginglight1.position.z);
 		glRotatef(90.0, 0.0, 1.0, 0.0);
@@ -79,8 +97,6 @@ void draw_content(World* world){
 		glScalef(10.0f, 10.0f, 10.0f);
 		draw_model(&world->hanginglight2.model);
     glPopMatrix();
-
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, material_ambient_default);
 }
 
 void draw_ground(Room room){
@@ -109,7 +125,7 @@ void draw_ground(Room room){
 	glEnd();
 }
 
-void draw_walls(Room room){
+void draw_left(Room room){
 	glBindTexture(GL_TEXTURE_2D, room.left);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glBegin(GL_QUADS);
@@ -122,7 +138,9 @@ void draw_walls(Room room){
 	glTexCoord2f(0.0, 1.0);
 	glVertex3f(-sizeOfRoom, 0, sizeOfRoom);
 	glEnd();
+}
 
+void draw_right(Room room){
 	glBindTexture(GL_TEXTURE_2D, room.right);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glBegin(GL_QUADS);
@@ -135,7 +153,9 @@ void draw_walls(Room room){
 	glTexCoord2f(0.0, 1.0);
 	glVertex3f(sizeOfRoom, 0, -sizeOfRoom);
 	glEnd();
+}
 
+void draw_front(Room room){
 	glBindTexture(GL_TEXTURE_2D, room.front);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glBegin(GL_QUADS);
@@ -148,7 +168,9 @@ void draw_walls(Room room){
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(-sizeOfRoom, sizeOfRoom, -sizeOfRoom);
 	glEnd();
+}
 
+void draw_back(Room room){
 	glBindTexture(GL_TEXTURE_2D, room.back);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glBegin(GL_QUADS);
@@ -161,7 +183,9 @@ void draw_walls(Room room){
 	glTexCoord2f(0.0, 1.0);
 	glVertex3f(sizeOfRoom, 0, sizeOfRoom);
 	glEnd();
+}
 
+void draw_top(Room room){
 	glBindTexture(GL_TEXTURE_2D, room.top);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glBegin(GL_QUADS);

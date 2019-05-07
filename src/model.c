@@ -484,19 +484,19 @@ void init_entities(World* world){
 	load_model("models//Sink.obj", &world->sink.model);
 	scale_model(&world->sink.model, 0.04, 0.04, 0.04);
 	world->sink.texture = load_texture("models//textures//Sink.png");
-	init_object(&world->sink, 100, 0, 115);
+	init_object(&world->sink, 100, 1.8, 115);
 	
 	// Toilet
 	load_model("models//Toilet.obj", &world->toilet.model);
 	scale_model(&world->toilet.model, 2.0, 2.0, 2.0);
 	world->toilet.texture = load_texture("models//textures//Toilet.jpg");
-	init_object(&world->toilet, 206, 0, 160);
+	init_object(&world->toilet, 206, 1, 160);
 	
 	// Crib
 	load_model("models//Crib.obj", &world->crib.model);
 	scale_model(&world->crib.model, 0.01, 0.01, 0.01);
 	world->crib.texture = load_texture("models//textures//Crib.jpg");
-	init_object(&world->crib, -130, 43, -180);
+	init_object(&world->crib, -130, 46, -180);
 	
 	// Hanginglight1
 	load_model("models//HangingLight.obj", &world->hanginglight1.model);

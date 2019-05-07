@@ -1,7 +1,7 @@
 #include <GL/glut.h>
 #include "callbacks.h"
 
-GLfloat light_position[] = {1.0f, 1.0f, 1.0f, 0.0f};
+GLfloat light_position[] = {1.0, 1.0, 0.0, 0.0};
 GLfloat light_ambient[] = {0.8, 0.8, 0.8, 1.0};
 GLfloat light_diffuse[] = {0.3, 0.3, 0.3, 1.0};
 GLfloat light_specular[] = {1.0, 1.0, 1.0, 1.0};
